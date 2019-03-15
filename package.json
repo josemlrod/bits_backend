@@ -4,7 +4,7 @@
   "description": "backend app for bits app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "$(npm bin)/jest --coverage && cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,25 @@
   },
   "devDependencies": {
     "coveralls": "^3.0.3",
-    "jest": "^24.5.0"
+    "jest": "^24.5.0",
+    "supertest": "^4.0.2"
+  }, 
+  "jest": {
+    "collectCoverage": true,
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text",
+      "clover",
+      "html"
+    ],
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/vendor/**",
+      "!**/__fixtures__/**",
+      "!**/coverage/**",
+      "!index.js"
+    ]
   }
 }
