@@ -22,6 +22,7 @@ PublicUserRouter.post('/', (request, response) => {
                 });
             })
             .catch(err => {
+                response.status(400);
                 response.json({
                     'err': `Something went wrong.`
                 });
@@ -32,24 +33,17 @@ PublicUserRouter.post('/', (request, response) => {
 
 PublicUserRouter.get('/:username', (request, response) => {
     const {username,} = request.params;
-    if (!username) {
-        response.status(400);
-        response.json({
-            'err': 'Error 400. Bad Request.',
-        });
-    } else {
-        UserServices.readUser(username)
+    UserServices.readUser(username)
         .then(user => {
             response.status(200);
             response.json(user);
         })
         .catch(err => {
-            response.status(409);
+            response.status(404);
             response.json({
-                'err': 'Error 409. Conflict.',
+                'err': 'Error 404. Not Found.',
             });
         });
-    }
 })
 
 module.exports = PublicUserRouter;
