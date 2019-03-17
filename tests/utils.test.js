@@ -1,5 +1,7 @@
+// LOCAL MODULES
 const {isRequiredNeeded, isValidType,} = require('../services/utils');
 
+// TESTS
 test('It returns a boolean', () => {
     expect(typeof isValidType({}, 'a', 'a')).toBe('boolean')
 });
@@ -19,7 +21,7 @@ test('It returns false if a full obj w required keys is passed in', () => {
             "last_name": "rodriguez", 
             "firebase_uid": "someotherfirebaseid", 
             "email": "someemail@gmail.com", 
-            "rel_status": "Taken"
+            "rel_status": "Taken",
     })).toBe(false);
 });
 
