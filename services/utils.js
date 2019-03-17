@@ -20,4 +20,4 @@ const isRequiredNeeded = body => {
     return false;
 }
 
-module.exports = {isRequiredNeeded,}
+module.exports = {isRequiredNeeded, isValidType,}
