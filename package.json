@@ -42,7 +42,9 @@
       "!**/vendor/**",
       "!**/__fixtures__/**",
       "!**/coverage/**",
-      "!index.js"
+      "!index.js",
+      "!./services/database.js",
+      "!./services/user_services.js"
     ]
   }
 }

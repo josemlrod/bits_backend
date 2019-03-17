@@ -8,8 +8,8 @@ CREATE TABLE users (
     username VARCHAR UNIQUE NOT NULL,
     firebase_uid VARCHAR UNIQUE NOT NULL, 
     avatar VARCHAR, 
-    first_name VARCHAR, 
-    last_name VARCHAR, 
+    first_name VARCHAR NOT NULL, 
+    last_name VARCHAR NOT NULL, 
     email VARCHAR UNIQUE NOT NULL,
     bio VARCHAR, 
     foods VARCHAR, 
@@ -17,7 +17,7 @@ CREATE TABLE users (
     movies VARCHAR, 
     following_number INT,
     follower_number INT, 
-    relationship_status VARCHAR NOT NULL, 
+    rel_status VARCHAR NOT NULL, 
     website_url VARCHAR,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -52,7 +52,7 @@ CREATE TABLE follow (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO users (username, firebase_uid, avatar, first_name, last_name, email, following_number, follower_number, relationship_status) VALUES
+INSERT INTO users (username, firebase_uid, avatar, first_name, last_name, email, following_number, follower_number, rel_status) VALUES
 ('josemlrod', 'somefirebaseid', 'https://scontent-iad3-1.cdninstagram.com/vp/bd7a3145499809c04e0a80adae9565f1/5D088C0F/t51.2885-15/sh0.08/e35/s750x750/43107549_237555317115897_1660968452996726784_n.jpg?_nc_ht=scontent-iad3-1.cdninstagram.com',
 'Jose', 'Rodriguez', 'joserodriguez@pursuit.org', 10000, 1, 'Taken');
 
