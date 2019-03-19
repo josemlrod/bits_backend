@@ -1,5 +1,5 @@
 // LOCAL MODULES
-const {isRequiredNeeded, isValidType,} = require('../services/utils');
+const {isRequiredNeeded, isValidType, isUserID,} = require('../services/utils');
 
 // TESTS
 test('It returns a boolean', () => {
@@ -36,3 +36,16 @@ test('It returns false if an obj w any of the required props missing is passed i
         "last_name": "rodriguez", 
     })).toBe(true);
 });
+
+test('Expect false if user_id is not a number', () => {
+    expect(isUserID('a')).toBe(false);
+})
+
+test('Expect false if user_id is undefined', () => {
+    expect(isUserID()).toBe(false);
+})
+
+
+test('Expect true is user_id is a number', () => {
+    expect(isUserID(1)).toBe(true);
+})

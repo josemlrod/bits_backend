@@ -3,7 +3,7 @@ const PrivateUserRouter = require('express').Router();
 
 // LOCAL MODULE
 const UserServices = require('../services/user_services');
-const {isRequiredNeeded} = require('../services/utils');
+const {isRequiredNeeded, isUserID} = require('../services/utils');
 
 PrivateUserRouter.put('/:user_id', (request, response) => {
     const {user_id} = request.params;
@@ -23,7 +23,6 @@ PrivateUserRouter.put('/:user_id', (request, response) => {
                 });
             })
             .catch(err => {
-                console.log(err)
                 response.status(400);
                 response.json({
                     'msg': `err. Something went wrong.`,
@@ -34,9 +33,9 @@ PrivateUserRouter.put('/:user_id', (request, response) => {
 
 PrivateUserRouter.delete('/:user_id', (request, response) => {
     const {user_id} = request.params;
-    if (!user_id || typeof parseInt(user_id) !== 'number') {
-        response.status(404);
-        response.status({
+    if (isUserID(user_id) || !request.params) {
+        response.status(400);
+        response.json({
             'msg': `err. Please input correct user_id.`,
         });
     } else {
