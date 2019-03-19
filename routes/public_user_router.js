@@ -26,7 +26,6 @@ PublicUserRouter.post('/', (request, response) => {
                 response.json({
                     'err': `Something went wrong.`
                 });
-                console.log(err);
             });
     }
 })

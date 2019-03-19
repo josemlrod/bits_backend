@@ -20,4 +20,12 @@ const isRequiredNeeded = body => {
     return false;
 }
 
-module.exports = {isRequiredNeeded, isValidType,}
+const isUserID = user_id => {
+    if (typeof user_id !== 'number' || !user_id) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+module.exports = {isRequiredNeeded, isValidType, isUserID,}
