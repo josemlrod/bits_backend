@@ -6,12 +6,14 @@ const bodyParser = require('body-parser');
 const PublicUserRouter = require('./routes/public_user_router');
 const PrivateUserRouter = require('./routes/private_user_router');
 const PublicPostRouter = require('./routes/public_post_router');
+const PrivatePostRouter = require('./routes/private_post_router');
 
 // MIDDLEWARE
 app.use(bodyParser.json());
 app.use('/user', PublicUserRouter);
 app.use('/user', PrivateUserRouter);
 app.use('/post', PublicPostRouter);
+app.use('/post', PrivatePostRouter);
 
 // EXPRESS ROUTES
 app.get('/', (request, response) => {
