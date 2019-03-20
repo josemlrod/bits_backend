@@ -33,7 +33,7 @@ test('If tyepof parseInt(post_id) is not a number expect status 400', done => {
 })
 
 test('If post_id is valid and exists on database expect status 200', done => {
-    PostServices.readPost.mockImplementation(() => Promise.resolve());
+    PostServices.readPostComments.mockImplementation(() => Promise.resolve());
     request(app)
         .get('/post/1')
         .then(response => {
@@ -46,7 +46,7 @@ test('If post_id is valid and exists on database expect status 200', done => {
 });
 
 test('If post_id is valid, but does not exist on database expect status 400', done => {
-    PostServices.readPost.mockImplementation(() => Promise.reject());
+    PostServices.readPostComments.mockImplementation(() => Promise.reject());
     request(app)
         .get('/post/10')
         .then(response => {
