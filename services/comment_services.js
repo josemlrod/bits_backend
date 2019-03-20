@@ -18,3 +18,5 @@ CommentServices.deleteComment = comment_id => db.none(
     WHERE 
     id = $[comment_id]`, {comment_id,}
 );
+
+module.exports = CommentServices;

@@ -4,6 +4,7 @@ const PublicPostRouter = require('express').Router();
 // LOCAL MODULES
 const PostServices = require('../services/post_services');
 
+// EXPRESS ROUTES
 PublicPostRouter.get('/:post_id', (request, response) => {
     const {post_id} = request.params;
     if (!post_id || typeof parseInt(post_id) !== 'number') {
