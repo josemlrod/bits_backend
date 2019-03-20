@@ -48,7 +48,8 @@
       "!index.js",
       "!./services/database.js",
       "!./services/user_services.js",
-      "!./services/post_services.js"
+      "!./services/post_services.js",
+      "!./services/comment_services.js"
     ]
   }
 }

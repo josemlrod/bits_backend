@@ -4,7 +4,7 @@ const db = require('./database');
 // GLOBAL VARIABLE
 const UserServices = {};
 
-// DB FUNCTIONS
+// OBJECT METHODS
 UserServices.createUser = (username, firebase_uid, avatar, first_name, last_name, email, bio, foods, music, movies, rel_status, website_url) => db.none(
     `
     INSERT INTO

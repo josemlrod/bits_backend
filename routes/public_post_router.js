@@ -12,7 +12,7 @@ PublicPostRouter.get('/:post_id', (request, response) => {
             'msg': `err. Please enter valid post_id.`,
         });
     } else {
-        PostServices.readPost(post_id)
+        PostServices.readPostComments(post_id)
         .then(data => {
             response.status(200);
             response.json({
