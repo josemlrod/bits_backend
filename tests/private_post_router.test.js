@@ -57,3 +57,115 @@ test('Expect status 400 if db promise returns a rejection', done => {
         });
 });
 
+test('Expect status 400 if post_id is undefined', done => {
+    request(app)
+        .put('/post')
+        .send({})
+        .then(response => {
+            expect(response.status).toBe(400);
+            done();
+        })
+        .catch(response => {
+            done();
+        });
+});
+
+test('Expect status 400 if typeof parseInt(post_id) is not a number', done => {
+    request(app)
+        .put('/post/a')
+        .send({})
+        .then(response => {
+            expect(response.status).toBe(400);
+            done();
+        })
+        .catch(response => {
+            done();
+        });
+});
+
+test('Expect status 200 if post_id is passed properly', done => {
+    PostServices.updatePost.mockImplementation(() => Promise.resolve());
+    request(app)
+        .put('/post/1')
+        .send({
+            'post_author': '1',
+            'post_img': 'someimg',
+            'post_text': 'sometext',
+        })
+        .then(response => {
+            expect(response.status).toBe(200);
+            done();
+        })
+        .catch(err => {
+            done();
+        });
+});
+
+test('Expect status 400 if db promise returns a rejection', done => {
+    PostServices.updatePost.mockImplementation(() => Promise.reject());
+    request(app)
+        .put('/post/1')
+        .send({
+            'post_author': '1',
+            'post_img': 'someimg',
+            'post_text': 'sometext',
+        })
+        .then(response => {
+            expect(response.status).toBe(400);
+            done();
+        })
+        .catch(err => {
+            done();
+        });
+});
+
+
+test('Expect status 400 if post_id is undefined', done => {
+    request(app)
+        .delete('/post')
+        .then(response => {
+            expect(response.status).toBe(400);
+            done();
+        })
+        .catch(response => {
+            done();
+        });
+});
+
+test('Expect status 400 if typeof parseInt(post_id) is not a number', done => {
+    request(app)
+        .delete('/post/a')
+        .then(response => {
+            expect(response.status).toBe(400);
+            done();
+        })
+        .catch(response => {
+            done();
+        });
+});
+
+test('Expect status 200 if post_id is passed properly', done => {
+    PostServices.deletePost.mockImplementation(() => Promise.resolve());
+    request(app)
+        .delete('/post/1')
+        .then(response => {
+            expect(response.status).toBe(200);
+            done();
+        })
+        .catch(err => {
+            done();
+        });
+});
+
+test('Expect status 400 if db promise returns a rejection', done => {
+    PostServices.deletePost.mockImplementation(() => Promise.reject());
+    request(app)
+        .delete('/post/1')
+        .then(response => {
+            expect(response.status).toBe(400);
+            done();
+        })
+        .catch(err => {
+            done();
+        });
+});
