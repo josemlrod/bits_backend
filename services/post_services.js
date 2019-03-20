@@ -16,15 +16,16 @@ PostServices.readPost = post_id => db.one(
     `SELECT * FROM posts WHERE id = $[post_id]`, {post_id,}
 );
 
-PostServices.updatePost = (post_id, post_img, post_text) => db.none(
+PostServices.updatePost = (post_author, post_img, post_text, post_id) => db.none(
     `UPDATE posts SET
-        post_img = $[post_img], post_text = $[post_img]
+        post_author = $[post_author], post_img = $[post_img], post_text = $[post_text]
     WHERE
-        id = $[post_id]`, {post_id, post_img, post_text,}
+        id = $[post_id]`, {post_author, post_img, post_text, post_id,}
 );
 
-PostServices.deletePost = post_id => {
-    'DELETE FROM comments WHERE post_id=${post_id}; DELETE FROM posts WHERE id=${post_id};', {post_id,}
-}
+PostServices.deletePost = post_id => db.none(
+    'DELETE FROM comments WHERE post_id=${post_id}; DELETE FROM posts WHERE id=${post_id};', {post_id,} 
+)
+
 
 module.exports = PostServices;
