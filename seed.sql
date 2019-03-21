@@ -50,7 +50,7 @@ CREATE UNIQUE INDEX a_like ON likes (like_author, post_liked);
 CREATE TABLE follow (
     id SERIAL PRIMARY KEY, 
     follower_user_id INT REFERENCES users(id),
-    person_being_followed_id INT REFERENCES users(id),
+    followed_user_id INT REFERENCES users(id),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 

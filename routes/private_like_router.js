@@ -21,7 +21,6 @@ PrivateLikeRouter.post('/', (request, response) => {
                 });
             })
             .catch(err => {
-                console.log(err)
                 response.status(400);
                 response.json({
                     'msg': `err. Something went wrong.`,
@@ -46,7 +45,6 @@ PrivateLikeRouter.delete('/:post_liked', (request, response) => {
                 });
             })
             .catch(err => {
-                console.log(err)
                 response.status(400);
                 response.json({
                     'msg': `err. Something went wrong.`,

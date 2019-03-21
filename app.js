@@ -9,6 +9,7 @@ const PublicPostRouter = require('./routes/public_post_router');
 const PrivatePostRouter = require('./routes/private_post_router');
 const PrivateCommentRouter = require('./routes/private_comment_router');
 const PrivateLikeRouter = require('./routes/private_like_router');
+const PrivateFollowRouter = require('./routes/private_follow_router');
 
 // MIDDLEWARE
 app.use(bodyParser.json());
@@ -18,6 +19,7 @@ app.use('/post', PublicPostRouter);
 app.use('/post', PrivatePostRouter);
 app.use('/comment', PrivateCommentRouter);
 app.use('/like', PrivateLikeRouter);
+app.use('/follow', PrivateFollowRouter);
 
 // EXPRESS ROUTES
 app.get('/', (request, response) => {

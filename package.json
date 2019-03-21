@@ -50,7 +50,8 @@
       "!./services/user_services.js",
       "!./services/post_services.js",
       "!./services/comment_services.js",
-      "!./services/like_services.js"
+      "!./services/like_services.js",
+      "!./services/follow_services.js"
     ]
   }
 }
