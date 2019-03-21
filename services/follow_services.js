@@ -4,14 +4,12 @@ const db = require('./database');
 // GLOBAL VARIABLE 
 FollowServices = {};
 
-FollowServices.readFollowers = (follower_user_id, followed_user_id) => db.any(
+FollowServices.readFollowers = followed_user_id => db.any(
     `SELECT 
-        users.username, users.avatar
-    FROM users JOIN follow
-    ON 
-        follow.followed_user_id = $[followed_user_id]
-    WHERE
-        users.id = $[follower_user_id]`, {follower_user_id, followed_user_id}
+        *
+    FROM follow JOIN users
+    ON users.id = follow.follower_user_id
+    WHERE follow.followed_user_id = $[followed_user_id]`, {followed_user_id,}
 );
 
 FollowServices.postFollow = (follower_user_id, followed_user_id) => db.none(

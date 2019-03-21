@@ -56,31 +56,80 @@ test('Expect status 400 if db promise rejects', done => {
         });
 });
 
-/*
-PrivateFollowRouter.post('/', (request, response) => {
-    const {follower_user_id, followed_user_id} = request.body;
-    if (!follower_user_id || !followed_user_id) {
-        response.status(400);
-        response.json({
-            'msg': `err. Something went wrong.`,
+test('Expect 400 if required params are not typeof number', done => {
+    request(app)
+        .delete('/follow/a/b')
+        .then(response => {
+            expect(response.status).toBe(400);
+            done();
+        })
+        .catch(response => {
+            done();
         });
-    } else {
-        FollowServices.postFollow(follower_user_id, followed_user_id)
-            .then(() => {
-                response.status(200);
-                response.json({
-                    'msg': `Successfully posted follow.`,
-                });
-            })
-            .catch(err => {
-                response.status(400);
-                response.json({
-                    'msg': `err. Something went wrong.`,
-                });
-            });
-    }
 });
 
-*/
+test('Expect 200 if required params are passed and valid data type', done => {
+    FollowServices.deleteFollow.mockImplementation(() => Promise.resolve());
+    request(app)
+        .delete('/follow/1/2')
+        .then(response => {
+            expect(response.status).toBe(200);
+            done();
+        })
+        .catch(response => {
+            done();
+        });
+});
+
+test('Expect 400 if db promise rejects', done => {
+    FollowServices.deleteFollow.mockImplementation(() => Promise.reject());
+    request(app)
+        .delete('/follow/1/2')
+        .then(response => {
+            expect(response.status).toBe(200);
+            done();
+        })
+        .catch(response => {
+            done();
+        });
+});
+
+test('Expect 400 if required param is not typeof number', done => {
+    request(app)
+        .get('/follow/a')
+        .then(response => {
+            expect(response.status).toBe(400);
+            done();
+        })
+        .catch(response => {
+            done();
+        });
+});
+
+test('Expect 200 if required param is passed in', done => {
+    FollowServices.readFollowers.mockImplementation(() => Promise.resolve());
+    request(app)
+        .get('/follow/1')
+        .then(response => {
+            expect(response.status).toBe(200);
+            done();
+        })
+        .catch(response => {
+            done();
+        });
+});
+
+test('Expect 400 if required param is passed in, but does not exist on database', done => {
+    FollowServices.readFollowers.mockImplementation(() => Promise.reject());
+    request(app)
+        .get('/follow/1')
+        .then(response => {
+            expect(response.status).toBe(400);
+            done();
+        })
+        .catch(response => {
+            done();
+        });
+});
 
 
