@@ -31,7 +31,7 @@ PrivateCommentRouter.post('/', (request, response) => {
 
 PrivateCommentRouter.delete('/:comment_id', (request, response) => {
     const {comment_id} = request.params;
-    if (!comment_id || typeof parseInt(comment_id) !== 'number') {
+    if (!comment_id || isNaN(parseInt(comment_id))) {
         response.status(400);
         response.json({
             'msg': `err. Something went wrong.`,

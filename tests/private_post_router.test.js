@@ -8,6 +8,7 @@ const db = require('../services/database');
 
 const {app,} = require('../app');
 
+// POST ROUTE TESTS
 test('Expect status 400 if one of the required keys of body does not exist', done => {
     request(app)
         .post('/post/')
@@ -57,6 +58,7 @@ test('Expect status 400 if db promise returns a rejection', done => {
         });
 });
 
+// PUT ROUTE TESTS
 test('Expect status 400 if post_id is undefined', done => {
     request(app)
         .put('/post')
@@ -119,7 +121,7 @@ test('Expect status 400 if db promise returns a rejection', done => {
         });
 });
 
-
+// DELETE ROUTE TESTS
 test('Expect status 400 if post_id is undefined', done => {
     request(app)
         .delete('/post')
