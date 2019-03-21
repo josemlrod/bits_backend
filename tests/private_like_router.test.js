@@ -92,28 +92,3 @@ test('Expect status 400 if post_liked param is valid, but does not exists on dat
             done();
         });
 });
-
-// PrivateLikeRouter.delete('/:post_liked', (request, response) => {
-//     const {post_liked,} = request.params;
-//     if (!post_liked || isNaN(parseInt(post_liked))) {
-//         response.status(400);
-//         response.json({
-//             'msg': `err. Something went wrong.`,
-//         });
-//     } else {
-//         LikeServices.deleteLike(post_liked)
-//             .then(() => {
-//                 response.status(200);
-//                 response.json({
-//                     'msg': `Successfully deleted like`,
-//                 });
-//             })
-//             .catch(err => {
-//                 console.log(err)
-//                 response.status(400);
-//                 response.json({
-//                     'msg': `err. Something went wrong.`,
-//                 });
-//             });
-//     }
-// });
