@@ -7,7 +7,7 @@ const PostServices = require('../services/post_services');
 // EXPRESS ROUTES
 PublicPostRouter.get('/:post_id', (request, response) => {
     const {post_id} = request.params;
-    if (!post_id || typeof parseInt(post_id) !== 'number') {
+    if (!post_id || isNaN(parseInt(post_id))) {
         response.status(400);
         response.json({
             'msg': `err. Please enter valid post_id.`,

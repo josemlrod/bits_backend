@@ -146,12 +146,12 @@ test('Expect msg: Successfully deleted user if correct user_id is provided', don
         })
 })
 
-test('Expect msg: Successfully deleted user if correct user_id is provided', done => {
+test('Expect status 200 if correct user_id is provided', done => {
     UserServices.deleteUser.mockImplementation(() => Promise.resolve());
     request(app)
         .delete('/user/15')
         .then(response => {
-            expect(response.json).toEqual({'msg': `Successfully deleted user.`});
+            expect(response.status).toBe(200);
             done();
         })
         .catch(err => {
@@ -159,15 +159,15 @@ test('Expect msg: Successfully deleted user if correct user_id is provided', don
         })
 })
 
-test('Expect msg: err. Something went wrong if user_id was not found on database', done => {
+test('Expect status 400 if user_id was not found on database', done => {
     UserServices.deleteUser.mockImplementation(() => Promise.reject());
     request(app)
         .delete('/user/20')
         .then(response => {
+            expect(response.status).toBe(400);
             done();
         })
         .catch(response => {
-            expect(response.json).toEqual({'msg': `err. Something went wrong.`});
             done();
         })
 })

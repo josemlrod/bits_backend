@@ -1,26 +1,27 @@
 // NPM MODULE
-const PrivateCommentRouter = require('express').Router();
+const PrivateLikeRouter = require('express').Router();
 
-// LOCAL MODULE
-const CommentServices = require('../services/comment_services');
+// LOCAL MODULES
+ const LikeServices = require('../services/like_services');
 
-// EXPRESS ROUTES
-PrivateCommentRouter.post('/', (request, response) => {
-    const {comment_author, post_id, comment_text} = request.body;
-    if (!comment_author || !post_id || !comment_text) {
+ // EXPRESS ROUTES
+PrivateLikeRouter.post('/', (request, response) => {
+    const {like_author, post_liked,} = request.body;
+    if (!like_author || !post_liked) {
         response.status(400);
         response.json({
             'msg': `err. Something went wrong.`,
         });
     } else {
-        CommentServices.createComment(comment_author, post_id, comment_text)
+        LikeServices.postLike(like_author, post_liked)
             .then(() => {
                 response.status(200);
                 response.json({
-                    'msg': `Successfully posted comment`,
+                    'msg': `Successfully posted like.`,
                 });
             })
             .catch(err => {
+                console.log(err)
                 response.status(400);
                 response.json({
                     'msg': `err. Something went wrong.`,
@@ -29,22 +30,23 @@ PrivateCommentRouter.post('/', (request, response) => {
     }
 });
 
-PrivateCommentRouter.delete('/:comment_id', (request, response) => {
-    const {comment_id} = request.params;
-    if (!comment_id || isNaN(parseInt(comment_id))) {
+PrivateLikeRouter.delete('/:post_liked', (request, response) => {
+    const {post_liked,} = request.params;
+    if (!post_liked || isNaN(parseInt(post_liked))) {
         response.status(400);
         response.json({
             'msg': `err. Something went wrong.`,
         });
     } else {
-        CommentServices.deleteComment(comment_id)
+        LikeServices.deleteLike(post_liked)
             .then(() => {
                 response.status(200);
                 response.json({
-                    'msg': `Successfully deleted comment.`,
+                    'msg': `Successfully deleted like`,
                 });
             })
             .catch(err => {
+                console.log(err)
                 response.status(400);
                 response.json({
                     'msg': `err. Something went wrong.`,
@@ -53,4 +55,4 @@ PrivateCommentRouter.delete('/:comment_id', (request, response) => {
     }
 });
 
-module.exports = PrivateCommentRouter;
+module.exports = PrivateLikeRouter;

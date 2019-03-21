@@ -45,6 +45,8 @@ CREATE TABLE likes (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE UNIQUE INDEX a_like ON likes (like_author, post_liked);
+
 CREATE TABLE follow (
     id SERIAL PRIMARY KEY, 
     follower_user_id INT REFERENCES users(id),

@@ -21,11 +21,13 @@ const isRequiredNeeded = body => {
 }
 
 const isUserID = user_id => {
-    if (typeof user_id !== 'number' || !user_id) {
-        return false;
-    } else {
+    if (isNaN(parseInt(user_id)) || !user_id) {
         return true;
+    } else {
+        return false;
     }
 }
+
+
 
 module.exports = {isRequiredNeeded, isValidType, isUserID,}
