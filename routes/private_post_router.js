@@ -4,7 +4,7 @@ const PrivatePostRouter = require('express').Router();
 // LOCAL MODULES
 const PostServices = require('../services/post_services');
 
-// EXPRESS ROUTES
+// EXPRESS ROUTES CALLBACKS
 PrivatePostRouter.post('/', (request, response) => {
     const {post_author, post_img, post_text} = request.body;
     if (!post_author || !post_img || !post_text) {

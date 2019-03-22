@@ -1,7 +1,7 @@
-// NPM MODULE
+// NPM MODULES
 const PublicUserRouter = require('express').Router();
 
-// LOCAL MODULE
+// LOCAL MODULES
 const UserServices = require('../services/user_services');
 const {isRequiredNeeded} = require('../services/utils');
 

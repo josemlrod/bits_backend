@@ -1,10 +1,11 @@
-// NPM MODULE
+// NPM MODULES
 const PrivateUserRouter = require('express').Router();
 
-// LOCAL MODULE
+// LOCAL MODULES
 const UserServices = require('../services/user_services');
 const {isRequiredNeeded, isUserID} = require('../services/utils');
 
+// EXPRESS ROUTE CALLBACKS
 PrivateUserRouter.put('/:user_id', (request, response) => {
     const {user_id} = request.params;
     if (isRequiredNeeded(request.body) || !user_id || typeof parseInt(user_id) !== 'number') {

@@ -1,9 +1,10 @@
-// NPM MODULE
+// NPM MODULES
 const PrivateFollowRouter = require('express').Router();
 
-// LOCAL MODULE
+// LOCAL MODULES
 const FollowServices = require('../services/follow_services');
 
+// EXPRESS ROUTES CALLBACKS
 PrivateFollowRouter.get('/:followed_user_id', (request, response) => {
     const {followed_user_id,} = request.params;
     if (isNaN(parseInt(followed_user_id))) {

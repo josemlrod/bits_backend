@@ -1,10 +1,10 @@
-// NPM MODULE
+// NPM MODULES
 const PrivateCommentRouter = require('express').Router();
 
-// LOCAL MODULE
+// LOCAL MODULES
 const CommentServices = require('../services/comment_services');
 
-// EXPRESS ROUTES
+// EXPRESS ROUTES CALLBACKS
 PrivateCommentRouter.post('/', (request, response) => {
     const {comment_author, post_id, comment_text} = request.body;
     if (!comment_author || !post_id || !comment_text) {
