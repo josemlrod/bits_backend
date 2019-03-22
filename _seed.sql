@@ -1,8 +1,7 @@
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS posts;
-DROP TABLE IF EXISTS comments;
-DROP TABLE IF EXISTS likes;
-DROP TABLE IF EXISTS follow;
+DROP DATABASE IF EXISTS bits;
+CREATE DATABASE bits;
+
+\c bits;
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY, 
@@ -54,3 +53,13 @@ CREATE TABLE follow (
     followed_user_id INT REFERENCES users(id),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+INSERT INTO users (username, firebase_uid, avatar, first_name, last_name, email, following_number, follower_number, rel_status) VALUES
+('josemlrod', 'somefirebaseid', 'https://scontent-iad3-1.cdninstagram.com/vp/bd7a3145499809c04e0a80adae9565f1/5D088C0F/t51.2885-15/sh0.08/e35/s750x750/43107549_237555317115897_1660968452996726784_n.jpg?_nc_ht=scontent-iad3-1.cdninstagram.com',
+'Jose', 'Rodriguez', 'joserodriguez@pursuit.org', 10000, 1, 'Taken');
+
+INSERT INTO posts (post_author, post_img, post_text) VALUES
+(1, 'somepostimg', 'someposttxt');
+
+INSERT INTO comments (comment_author, post_id, comment_text) VALUES 
+(1, 1, 'somecomment');
