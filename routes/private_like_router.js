@@ -1,10 +1,10 @@
-// NPM MODULE
+// NPM MODULES
 const PrivateLikeRouter = require('express').Router();
 
 // LOCAL MODULES
  const LikeServices = require('../services/like_services');
 
- // EXPRESS ROUTES
+ // EXPRESS ROUTES CALLBACKS
 PrivateLikeRouter.post('/', (request, response) => {
     const {like_author, post_liked,} = request.body;
     if (!like_author || !post_liked) {

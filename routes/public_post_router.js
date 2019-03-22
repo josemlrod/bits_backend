@@ -1,10 +1,10 @@
-// NPM MODULE
+// NPM MODULES
 const PublicPostRouter = require('express').Router();
 
 // LOCAL MODULES
 const PostServices = require('../services/post_services');
 
-// EXPRESS ROUTES
+// EXPRESS ROUTES CALLBACKS
 PublicPostRouter.get('/:post_id', (request, response) => {
     const {post_id} = request.params;
     if (!post_id || isNaN(parseInt(post_id))) {
