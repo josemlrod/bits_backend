@@ -5,6 +5,6 @@ const {app,} = require('./app');
 const port = 3000; 
 
 // EXPRESS ROUTES
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
     console.log(`App is running on port #${port}`);
 });
