@@ -3,6 +3,9 @@ const PrivateFollowRouter = require('express').Router();
 
 // LOCAL MODULES
 const FollowServices = require('../services/follow_services');
+const checkFirebaseToken = require('../services/firebase_auth');
+
+app.use(checkFirebaseToken);
 
 // EXPRESS ROUTES CALLBACKS
 PrivateFollowRouter.get('/:followed_user_id', (request, response) => {
