@@ -6,7 +6,7 @@ const UserServices = require('../services/user_services');
 const {isRequiredNeeded, isUserID} = require('../services/utils');
 const checkFirebaseToken = require('../services/firebase_auth');
 
-app.use(checkFirebaseToken);
+PrivateUserRouter.use(checkFirebaseToken);
 
 // EXPRESS ROUTE CALLBACKS
 PrivateUserRouter.put('/:user_id', (request, response) => {
