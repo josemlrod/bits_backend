@@ -52,8 +52,7 @@
       "!./services/post_services.js",
       "!./services/comment_services.js",
       "!./services/like_services.js",
-      "!./services/follow_services.js",
-      "!./services/firebase_auth.js"
+      "!./services/follow_services.js"
     ]
   }
 }

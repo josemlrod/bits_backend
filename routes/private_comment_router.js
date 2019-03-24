@@ -3,9 +3,6 @@ const PrivateCommentRouter = require('express').Router();
 
 // LOCAL MODULES
 const CommentServices = require('../services/comment_services');
-const checkFirebaseToken = require('../services/firebase_auth');
-
-PrivateCommentRouter.use(checkFirebaseToken);
 
 // EXPRESS ROUTES CALLBACKS
 PrivateCommentRouter.post('/', (request, response) => {

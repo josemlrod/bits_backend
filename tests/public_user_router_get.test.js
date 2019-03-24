@@ -3,12 +3,6 @@ const request = require('supertest')
 jest.mock('../services/database')
 const db = require('../services/database');
 
-// db.mockImplementation(() => {
-//     return {
-//         any: Promise.resolve({'test': 2})
-//     }
-// })
-
 jest.mock('../services/user_services.js')
 const UserServices = require('../services/user_services.js')
 const {app,} = require('../app')

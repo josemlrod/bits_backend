@@ -5,7 +5,7 @@ const PrivateLikeRouter = require('express').Router();
  const LikeServices = require('../services/like_services');
  const checkFirebaseToken = require('../services/firebase_auth');
 
- PrivateLikeRouter.use(checkFirebaseToken);
+//  PrivateLikeRouter.use(checkFirebaseToken);
 
  // EXPRESS ROUTES CALLBACKS
 PrivateLikeRouter.post('/', (request, response) => {
