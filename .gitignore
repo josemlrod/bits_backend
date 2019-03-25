@@ -2,3 +2,4 @@ node_modules
 coverage
 .coveralls.yml
 .DS_Store
+./firebase_key.json
