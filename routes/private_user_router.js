@@ -4,6 +4,9 @@ const PrivateUserRouter = require('express').Router();
 // LOCAL MODULES
 const UserServices = require('../services/user_services');
 const {isRequiredNeeded, isUserID} = require('../services/utils');
+const checkFirebaseToken = require('../services/firebase_auth');
+
+// PrivateUserRouter.use(checkFirebaseToken);
 
 // EXPRESS ROUTE CALLBACKS
 PrivateUserRouter.put('/:user_id', (request, response) => {

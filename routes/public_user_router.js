@@ -30,7 +30,7 @@ PublicUserRouter.post('/', (request, response) => {
     }
 })
 
-PublicUserRouter.get('/:username', (request, response) => {
+PublicUserRouter.get('/:username',(request, response) => {
     const {username,} = request.params;
     UserServices.readUser(username)
         .then(user => {

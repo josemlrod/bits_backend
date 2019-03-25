@@ -11,11 +11,15 @@ const PrivateCommentRouter = require('./routes/private_comment_router');
 const PrivateLikeRouter = require('./routes/private_like_router');
 const PrivateFollowRouter = require('./routes/private_follow_router');
 
+// LOCAL MODULES
+const checkFirebaseToken = require('./services/firebase_auth');
+
 // MIDDLEWARE
 app.use(bodyParser.json());
-app.use('/user', PublicUserRouter);
-app.use('/user', PrivateUserRouter);
 app.use('/post', PublicPostRouter);
+app.use('/user', PublicUserRouter);
+PrivateCommentRouter.use(checkFirebaseToken);
+app.use('/user', PrivateUserRouter);
 app.use('/post', PrivatePostRouter);
 app.use('/comment', PrivateCommentRouter);
 app.use('/like', PrivateLikeRouter);

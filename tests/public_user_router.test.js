@@ -1,24 +1,7 @@
 const request = require('supertest')
 
-// jest.mock('pg-promise')
-// const pg_promise = require("pg-promise")
-// pg_promise.mockImplementation(() => {
-//     return function() {
-//         return {
-//             any: () => Promise.resolve({'test': 1}),
-//             one: () => Promise.reject(),
-//         }
-//     }
-// })
-
 jest.mock('../services/database')
 const db = require('../services/database');
-
-// db.mockImplementation(() => {
-//     return {
-//         any: Promise.resolve({'test': 2})
-//     }
-// })
 
 jest.mock('../services/user_services.js')
 const UserServices = require('../services/user_services.js')

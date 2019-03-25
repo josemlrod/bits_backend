@@ -3,6 +3,9 @@ const PrivatePostRouter = require('express').Router();
 
 // LOCAL MODULES
 const PostServices = require('../services/post_services');
+const checkFirebaseToken = require('../services/firebase_auth');
+
+// PrivatePostRouter.use(checkFirebaseToken);
 
 // EXPRESS ROUTES CALLBACKS
 PrivatePostRouter.post('/', (request, response) => {
