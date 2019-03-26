@@ -1,7 +1,7 @@
 // NPM MODULES
 const app = require('express')();
 const bodyParser = require('body-parser');
-const cors = require(cors);
+const cors = require('cors');
 
 // ROUTER MODULES   
 const PublicUserRouter = require('./routes/public_user_router');
