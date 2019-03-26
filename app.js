@@ -1,7 +1,7 @@
 // NPM MODULES
 const app = require('express')();
 const bodyParser = require('body-parser');
-const cors = require('cors');
+// const cors = require('cors');
 
 // ROUTER MODULES   
 const PublicUserRouter = require('./routes/public_user_router');
@@ -16,7 +16,7 @@ const PrivateFollowRouter = require('./routes/private_follow_router');
 const checkFirebaseToken = require('./services/firebase_auth');
 
 // MIDDLEWARE
-app.use(cors);
+// app.use(cors);
 app.use(bodyParser.json());
 app.use('/post', PublicPostRouter);
 app.use('/user', PublicUserRouter);
