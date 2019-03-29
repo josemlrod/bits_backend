@@ -28,7 +28,7 @@ PublicUserRouter.post('/', (request, response) => {
                 });
             });
     }
-})
+});
 
 PublicUserRouter.get('/:username',(request, response) => {
     const {username,} = request.params;
@@ -43,6 +43,21 @@ PublicUserRouter.get('/:username',(request, response) => {
                 'err': 'Error 404. Not Found.',
             });
         });
-})
+});
+
+PublicUserRouter.get('/id/:firebase_uid',(request, response) => {
+    const {firebase_uid,} = request.params;
+    UserServices.readUserByID(firebase_uid)
+        .then(user => {
+            response.status(200);
+            response.json(user);
+        })
+        .catch(err => {
+            response.status(404);
+            response.json({
+                'err': 'Error 404. Not Found.',
+            });
+        });
+});
 
 module.exports = PublicUserRouter;

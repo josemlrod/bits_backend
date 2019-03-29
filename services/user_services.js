@@ -20,6 +20,12 @@ UserServices.readUser = username => db.one(
     `, {username,}
 );
 
+UserServices.readUserByID = firebase_uid => db.one(
+    `
+    SELECT * FROM users WHERE firebase_uid = $[firebase_uid]
+    `, {firebase_uid,}
+);
+
 UserServices.updateUser = (username, firebase_uid, avatar, first_name, last_name, email, bio, foods, music, movies, rel_status, website_url, user_id) => db.none(
     `
     UPDATE users SET
