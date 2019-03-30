@@ -5,7 +5,7 @@ const PrivateFollowRouter = require('express').Router();
 const FollowServices = require('../services/follow_services');
 
 // EXPRESS ROUTES CALLBACKS
-PrivateFollowRouter.get('/:followed_user_id', (request, response) => {
+PrivateFollowRouter.get('/followers/:followed_user_id', (request, response) => {
     const {followed_user_id,} = request.params;
     if (isNaN(parseInt(followed_user_id))) {
         response.status(400);
@@ -28,6 +28,25 @@ PrivateFollowRouter.get('/:followed_user_id', (request, response) => {
                 });
             });
     }
+});
+
+PrivateFollowRouter.get('/followings/:followed_user_id', (request, response) => {
+    const {followed_user_id,} = request.params;
+        FollowServices.readFollowing(followed_user_id)
+            .then(data => {
+                response.status(200);
+                response.json({
+                    'msg': `Success.`,
+                    'data': data,
+                });
+            })
+            .catch(err => {
+                console.log(err)
+                response.status(400);
+                response.json({
+                    'msg': `err. Something went wrong.`,
+                });
+            });
 });
 
 PrivateFollowRouter.post('/', (request, response) => {

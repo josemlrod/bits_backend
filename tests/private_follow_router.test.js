@@ -96,7 +96,7 @@ test('Expect 400 if db promise rejects', done => {
 
 test('Expect 400 if required param is not typeof number', done => {
     request(app)
-        .get('/follow/a')
+        .get('/follow/followers/a')
         .then(response => {
             expect(response.status).toBe(400);
             done();
@@ -109,7 +109,7 @@ test('Expect 400 if required param is not typeof number', done => {
 test('Expect 200 if required param is passed in', done => {
     FollowServices.readFollowers.mockImplementation(() => Promise.resolve());
     request(app)
-        .get('/follow/1')
+        .get('/follow/followers/1')
         .then(response => {
             expect(response.status).toBe(200);
             done();
@@ -122,7 +122,7 @@ test('Expect 200 if required param is passed in', done => {
 test('Expect 400 if required param is passed in, but does not exist on database', done => {
     FollowServices.readFollowers.mockImplementation(() => Promise.reject());
     request(app)
-        .get('/follow/1')
+        .get('/follow/followers/1')
         .then(response => {
             expect(response.status).toBe(400);
             done();
@@ -132,4 +132,29 @@ test('Expect 400 if required param is passed in, but does not exist on database'
         });
 });
 
+test('Expect 200 if required param is passed in', done => {
+    FollowServices.readFollowing.mockImplementation(() => Promise.resolve());
+    request(app)
+        .get('/follow/followings/1')
+        .then(response => {
+            expect(response.status).toBe(200);
+            done();
+        })
+        .catch(response => {
+            done();
+        });
+});
+
+test('Expect 400 if required param is passed in', done => {
+    FollowServices.readFollowing.mockImplementation(() => Promise.reject());
+    request(app)
+        .get('/follow/followings/1')
+        .then(response => {
+            expect(response.status).toBe(400);
+            done();
+        })
+        .catch(response => {
+            done();
+        });
+});
 

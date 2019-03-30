@@ -12,6 +12,16 @@ FollowServices.readFollowers = followed_user_id => db.any(
     WHERE follow.followed_user_id = $[followed_user_id]`, {followed_user_id,}
 );
 
+FollowServices.readFollowing = follower_user_id => db.any(
+    `
+    SELECT 
+        *
+    FROM follow JOIN users
+    ON users.id = follow.followed_user_id
+    WHERE follow.follower_user_id = $[follower_user_id]
+    `, {follower_user_id,}
+)
+
 FollowServices.postFollow = (follower_user_id, followed_user_id) => db.none(
     `INSERT INTO 
         follow (follower_user_id, followed_user_id)
