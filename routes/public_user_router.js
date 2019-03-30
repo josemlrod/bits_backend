@@ -60,4 +60,22 @@ PublicUserRouter.get('/id/:firebase_uid',(request, response) => {
         });
 });
 
+PublicUserRouter.get('/posts/:user_id', (request, response) => {
+    const {user_id,} = request.params;
+    UserServices.getUserPosts(user_id)
+        .then(data => {
+            response.status(200);
+            response.json({
+                'msg': `Success.`,
+                data,
+            });
+        })
+        .catch(err => {
+            response.status(400);
+            response.json({
+                'msg': `err. Something went wrong.`,
+            });
+        });
+});
+
 module.exports = PublicUserRouter;

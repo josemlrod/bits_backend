@@ -26,6 +26,15 @@ UserServices.readUserByID = firebase_uid => db.one(
     `, {firebase_uid,}
 );
 
+UserServices.getUserPosts = user_id => db.any(
+    `
+    SELECT * FROM
+        users JOIN posts
+    ON users.id = post_author
+    WHERE users.id = $[user_id]
+    `, {user_id,}
+)
+
 UserServices.updateUser = (username, firebase_uid, avatar, first_name, last_name, email, bio, foods, music, movies, rel_status, website_url, user_id) => db.none(
     `
     UPDATE users SET

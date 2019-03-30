@@ -58,3 +58,33 @@ test('It returns 404 nonexisting firebase_uid is passed in', done => {
             done();
         })
 })
+
+test('It returns 200 existing user_id is passed in', done => {
+    UserServices.getUserPosts.mockImplementation(() => Promise.resolve())
+    
+    request(app)
+        .get('/user/posts/1')
+        .then(response => {
+            expect(response.status).toBe(200);
+            done();
+        })
+        .catch(err => {
+            if (err) throw new Error(`!!!! err`);
+            done();
+        });
+})
+
+test('It returns 400 non-existing user_id is passed in', done => {
+    UserServices.getUserPosts.mockImplementation(() => Promise.reject())
+    
+    request(app)
+        .get('/user/posts/1')
+        .then(response => {
+            expect(response.status).toBe(400);
+            done();
+        })
+        .catch(err => {
+            if (err) throw new Error(`!!!! err`);
+            done();
+        });
+})
