@@ -15,7 +15,7 @@ test('with valid id token, next is called', done => {
     })
 
     const mockReq = {
-        body: {
+        params: {
             token: 'test-token'
         }
     }
@@ -38,7 +38,7 @@ test('without valid id token, next is NOT called', done => {
     })
 
     const mockReq = {
-        body: {
+        params: {
             token: 'test-token'
         }
     }

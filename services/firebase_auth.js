@@ -1,7 +1,7 @@
 const admin = require('../firebase')
 
 const checkFirebaseToken = (request, response, next) => {
-    const {token} = request.body;
+    const {token} = request.params;
     admin.auth().verifyIdToken(token)
       .then(decodedToken => {
         const uid = decodedToken.uid;
