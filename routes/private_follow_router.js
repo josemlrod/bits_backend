@@ -30,9 +30,9 @@ PrivateFollowRouter.get('/followers/:followed_user_id', (request, response) => {
     }
 });
 
-PrivateFollowRouter.get('/followings/:followed_user_id', (request, response) => {
-    const {followed_user_id,} = request.params;
-        FollowServices.readFollowing(followed_user_id)
+PrivateFollowRouter.get('/followings/:follower_user_id', (request, response) => {
+    const {follower_user_id,} = request.params;
+        FollowServices.readFollowing(follower_user_id)
             .then(data => {
                 response.status(200);
                 response.json({

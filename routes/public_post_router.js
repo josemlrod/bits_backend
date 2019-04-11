@@ -30,4 +30,29 @@ PublicPostRouter.get('/:post_id', (request, response) => {
     }
 });
 
+PublicPostRouter.get('/:post_id/nocomment', (request, response) => {
+    const {post_id} = request.params;
+    if (!post_id || isNaN(parseInt(post_id))) {
+        response.status(400);
+        response.json({
+            'msg': `err. Please enter valid post_id.`,
+        });
+    } else {
+        PostServices.readPost(post_id)
+        .then(data => {
+            response.status(200);
+            response.json({
+                'msg': `Success.`,
+                'post': data,
+            })
+        })   
+        .catch(err => {
+            response.status(400);
+            response.json({
+                'msg': `err. Something went wrong.`,
+            });
+        });
+    }
+});
+
 module.exports = PublicPostRouter;
