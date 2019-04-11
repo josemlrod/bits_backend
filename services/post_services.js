@@ -13,7 +13,9 @@ PostServices.createPost = (post_author, post_img, post_text) => db.none(
 );
 
 PostServices.readPost = post_id => db.one(
-    `SELECT * FROM posts WHERE id = $[post_id]`, {post_id,}
+    `SELECT * FROM posts JOIN users 
+    ON post_author = users.id 
+    WHERE id = $[post_id]`, {post_id,}
 );
 
 PostServices.readPostComments = post_id => db.any(
