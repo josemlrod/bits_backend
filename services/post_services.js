@@ -20,10 +20,15 @@ PostServices.readPost = post_id => db.one(
 
 PostServices.readPostComments = post_id => db.any(
     `SELECT 
-        posts.post_author, posts.post_img, posts.post_text, comments.comment_author, comments.comment_text 
+       *
     FROM posts JOIN comments 
         ON 
-    posts.id = comments.post_id WHERE comments.post_id = $[post_id]`, {post_id,}
+    posts.id = comments.post_id 
+        JOIN users 
+        ON
+    posts.post_author = users.id
+    WHERE comments.post_id = $[post_id]
+    `, {post_id,}
 );
 
 PostServices.updatePost = (post_author, post_img, post_text, post_id) => db.none(
