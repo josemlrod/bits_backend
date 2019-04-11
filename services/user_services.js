@@ -20,6 +20,12 @@ UserServices.readUser = username => db.one(
     `, {username,}
 );
 
+UserServices.readUserID = id => db.one(
+    `
+    SELECT * FROM users WHERE id = $[id]
+    `, {id,}
+);
+
 UserServices.readUserByID = firebase_uid => db.one(
     `
     SELECT * FROM users WHERE firebase_uid = $[firebase_uid]
