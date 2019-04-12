@@ -32,6 +32,24 @@ PrivateLikeRouter.post('/', (request, response) => {
     }
 });
 
+PrivateLikeRouter.get('/:post_id', (request, response) => {
+    const {post_id} = request.params;
+    LikeServices.readLikes(post_id)
+        .then((data) => {
+            response.status(200);
+            response.json({
+                msg: `Succesfully retrieved data.`,
+                data
+            });
+        })
+        .catch(err => {
+            response.status(400);
+            response.json({
+                msg: `err. Something went wrong.`,
+            });
+        });
+});
+
 PrivateLikeRouter.delete('/:post_liked', (request, response) => {
     const {post_liked,} = request.params;
     if (!post_liked || isNaN(parseInt(post_liked))) {

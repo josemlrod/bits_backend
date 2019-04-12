@@ -5,6 +5,11 @@ const db = require('./database');
 const LikeServices = {};
 
 // OBJECT METHODS
+LikeServices.readLikes = post_id => db.any(
+    `select * from likes join posts on likes.post_liked = posts.id where posts.id = $[post_id]
+    `, {post_id,}
+)
+
 LikeServices.postLike = (like_author, post_liked) => db.none(
     `INSERT INTO
         likes (like_author, post_liked)
