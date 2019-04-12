@@ -19,8 +19,7 @@ PostServices.readPost = post_id => db.one(
 );
 
 PostServices.readPostComments = post_id => db.any(
-    `
-    SELECT 
+    `SELECT 
        *
     FROM posts JOIN comments 
         ON 
@@ -28,9 +27,6 @@ PostServices.readPostComments = post_id => db.any(
         JOIN users 
         ON
     posts.post_author = users.id
-    	JOIN likes
-    	ON
-    likes.post_liked = posts.id
     WHERE comments.post_id = $[post_id]
     `, {post_id,}
 );
