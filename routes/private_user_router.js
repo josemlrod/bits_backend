@@ -6,7 +6,7 @@ const UserServices = require('../services/user_services');
 const {isRequiredNeeded, isUserID} = require('../services/utils');
 
 // EXPRESS ROUTE CALLBACKS
-PrivateUserRouter.get('/all', (request, response) => {
+PrivateUserRouter.get('/', (request, response) => {
     UserServices.getAllUsers()
         .then(data => {
             response.status(200);

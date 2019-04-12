@@ -21,7 +21,7 @@ UserServices.readUser = username => db.one(
 );
 
 UserServices.getAllUsers = _ => db.any(
-    `select * from users`
+    `select * from users`, {}
 )
 
 UserServices.readUserID = id => db.one(
