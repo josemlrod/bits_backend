@@ -33,10 +33,13 @@ UserServices.readUserByID = firebase_uid => db.one(
 );
 
 UserServices.getUserPosts = user_id => db.any(
-    `
-    SELECT * FROM
-        users JOIN posts
+    `SELECT * FROM
+    users JOIN posts
     ON users.id = post_author
+    JOIN comments
+    ON posts.id = comments.post_id
+    JOIN likes 
+    ON likes.post_liked = posts.id
     WHERE users.id = $[user_id]
     `, {user_id,}
 )
