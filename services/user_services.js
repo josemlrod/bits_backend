@@ -20,6 +20,10 @@ UserServices.readUser = username => db.one(
     `, {username,}
 );
 
+UserServices.getAllUsers = _ => db.any(
+    `select * from users`
+)
+
 UserServices.readUserID = id => db.one(
     `
     SELECT * FROM users WHERE id = $[id]
