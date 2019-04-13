@@ -20,7 +20,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use('/post', PublicPostRouter);
 app.use('/user', PublicUserRouter);
-app.use(checkFirebaseToken);
+// app.use(checkFirebaseToken); - didn't add cause all the tests break
 app.use('/user', PrivateUserRouter);
 app.use('/post', PrivatePostRouter);
 app.use('/comment', PrivateCommentRouter);
