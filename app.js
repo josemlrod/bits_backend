@@ -20,7 +20,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use('/post', PublicPostRouter);
 app.use('/user', PublicUserRouter);
-PrivateCommentRouter.use(checkFirebaseToken);
+app.use(checkFirebaseToken);
 app.use('/user', PrivateUserRouter);
 app.use('/post', PrivatePostRouter);
 app.use('/comment', PrivateCommentRouter);
